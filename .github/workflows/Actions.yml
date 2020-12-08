@@ -42,7 +42,7 @@
 #       with:
 #         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-name: 'Terraform'
+name: 'Actions'
 
 on: push
   # push:
@@ -53,7 +53,7 @@ on: push
   # pull_request:
 
 jobs:
-  terraform:
+  - terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
 
@@ -63,15 +63,15 @@ jobs:
         shell: bash
 
     steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+
    # Terraform remote backend does not support any environment variables, nor -var
     - name: add environmental variables to main.tf
       run: |
         sed -i 's/{{SED-GITHUB_REF}}/$GITHUB_REF/g' main.tf
         sed -i 's/{{SED-GITHUB_REPOSITORY}}/$GITHUB_REPOSITORY/g' main.tf
-
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v2
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
@@ -100,8 +100,7 @@ jobs:
       # if: github.ref == 'refs/heads/production' && github.event_name == 'push'
       run: terraform apply -auto-approve
 
-
-  listS3:
+  - aws-cli:
     runs-on: ubuntu-18.04
     steps:
       - uses: chrislennon/action-aws-cli@v1.1
