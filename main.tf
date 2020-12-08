@@ -37,8 +37,6 @@ provider "aws" {
   access_key = var.aws_access_key_id
   secret_key = var.aws_secret_access_key
 }
-<<<<<<< Updated upstream
-=======
 
 
 # resource "aws_s3_bucket" "example" {
@@ -76,4 +74,3 @@ resource "aws_s3_bucket" "static-website" {
 # EOF
 #   }
 }
->>>>>>> Stashed changes
