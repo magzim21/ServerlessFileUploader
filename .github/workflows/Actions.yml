@@ -69,9 +69,10 @@ jobs:
 
    # Terraform remote backend does not support any environment variables, nor -var
     - name: add environmental variables to main.tf
-      run: |
-        sed -i 's/{{SED-GITHUB_REF}}/${{ GITHUB_REF }}/g' main.tf
-        sed -i 's/{{SED-GITHUB_REPOSITORY}}/${{ GITHUB_REPOSITORY }}/g' main.tf
+      run: | 
+        sed -i 's/{{SED-GITHUB_REF}}/${{ github.head_ref }}/g' main.tf
+        sed -i 's/{{SED-GITHUB_REPOSITORY}}/${{ github.repository }}/g' main.tf
+        #GITHUB_REF GITHUB_REPOSITORY 
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
