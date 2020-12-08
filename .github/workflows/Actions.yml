@@ -102,6 +102,8 @@ jobs:
 
   aws-cli:
     runs-on: ubuntu-18.04
+    needs:
+      terraform
     steps:
       - uses: chrislennon/action-aws-cli@v1.1
       # All commands after this point have access to the AWS CLI

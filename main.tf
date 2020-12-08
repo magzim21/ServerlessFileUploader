@@ -33,7 +33,7 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "eu-central-1"
+  region     = "eu-central-1"
   access_key = var.aws_access_key_id
   secret_key = var.aws_secret_access_key
 }
@@ -52,25 +52,25 @@ resource "aws_s3_bucket" "static-website" {
   bucket = "s3-website-test.hashicorp.com"
   acl    = "public-read"
   tags = {
-    Name        = "FileUploaderStatic-{{SED-GITHUB_REPOSITORY}}-{{SED-GITHUB_REF}}"
+    Name = "FileUploaderStatic-{{SED-GITHUB_REPOSITORY}}-{{SED-GITHUB_REF}}"
     #Name        = "{{!SED-GITHUB_REPOSITORY}}-{{!SED-GITHUB_REF}}"
     # Environment = "Dev"
   }
   # policy = file("policy.json")
 
-#   website {
-#     index_document = "index.html"
-#     error_document = "error.html"
+  #   website {
+  #     index_document = "index.html"
+  #     error_document = "error.html"
 
-#     routing_rules = <<EOF
-# [{
-#     "Condition": {
-#         "KeyPrefixEquals": "docs/"
-#     },
-#     "Redirect": {
-#         "ReplaceKeyPrefixWith": "documents/"
-#     }
-# }]
-# EOF
-#   }
+  #     routing_rules = <<EOF
+  # [{
+  #     "Condition": {
+  #         "KeyPrefixEquals": "docs/"
+  #     },
+  #     "Redirect": {
+  #         "ReplaceKeyPrefixWith": "documents/"
+  #     }
+  # }]
+  # EOF
+  #   }
 }
