@@ -70,6 +70,14 @@ jobs:
    # Terraform remote backend does not support any environment variables, nor -var
     - name: add environmental variables to main.tf
       run: | 
+        echo ${{ GITHUB_SHA }}
+        echo ${{ GITHUB_SERVER_URL }}
+        echo ${{ GITHUB_REPOSITORY }}
+        echo $GITHUB_SHA $GITHUB_SERVER_URL $GITHUB_REPOSITORY
+        echo ${{ github.repository }}
+        echo ${{ github.repository_owner }}
+        echo ${{ github.sha }}
+        echo ${{ github.head_ref }}
         sed -i 's/{{SED-GITHUB_REF}}/${{ github.head_ref }}/g' main.tf
         sed -i 's/{{SED-GITHUB_REPOSITORY}}/${{ github.repository }}/g' main.tf
         #GITHUB_REF GITHUB_REPOSITORY 
