@@ -70,7 +70,16 @@ jobs:
    # Terraform remote backend does not support any environment variables, nor -var
     - name: add environmental variables to main.tf
       run: | 
-        echo $GITHUB_SHA $GITHUB_SERVER_URL $GITHUB_REPOSITORY
+        echo $GITHUB_EVENT_NAME
+        echo $GITHUB_EVENT_PATH
+        echo $GITHUB_WORKSPACE
+        echo $GITHUB_SHA
+        echo $GITHUB_REF
+        echo $GITHUB_HEAD_REF
+        echo $GITHUB_BASE_REF
+        echo $GITHUB_SERVER_URL
+        echo $GITHUB_API_URL
+        echo $GITHUB_GRAPHQL_URL
 
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
