@@ -75,7 +75,7 @@ jobs:
         REPO_NAME=$(echo $GITHUB_WORKSPACE | cut -d / -f 5 | awk '{print tolower($0)}')
         
         sed -i "s/{{SED-GITHUB_REF}}/${BRANCH_NAME}/g" main.tf
-        sed -i "s/{{SED-GITHUB_REPOSITORY}}/${GITHUB_WORKSPACE##*/}/g"  main.tf
+        sed -i "s/{{SED-GITHUB_REPOSITORY}}/${REPO_NAME}/g"  main.tf
 
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
