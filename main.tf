@@ -52,7 +52,7 @@ resource "aws_s3_bucket" "static-website" {
   bucket = "s3-website-test.hashicorp.com"
   acl    = "public-read"
   tags = {
-    Name = "FileUploaderStatic-{{SED-GITHUB_REPOSITORY}}-{{SED-GITHUB_REF}}"
+    Name = "{{SED-GITHUB_REPOSITORY}}-{{SED-GITHUB_REF}}"
     #Name        = "{{!SED-GITHUB_REPOSITORY}}-{{!SED-GITHUB_REF}}"
     # Environment = "Dev"
   }
