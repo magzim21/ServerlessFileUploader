@@ -32,6 +32,8 @@ jobs:
       # Only run terraform apply stage if outside of a pull request
       if: type IN (push) and branch != production
       script:
-        - terraform init ${tf_init_cli_options}
+        # Unfortunentely, it is  not possible to specify a workspace berfore `terraform init`, but in turn `init` promts user for a workspace.
+        # This "echo 1 |" is a workaround that allows to pass an interctive promt on "Please enter a number to select a workspace:"
+        - echo 1 | terraform init ${tf_init_cli_options}
         - terraform workspace select test
         - terraform apply ${tf_apply_cli_options}
