@@ -18,7 +18,7 @@ before_install:
   - rm terraform_${tf_version}_linux_amd64.zip
   - pwd
   - ls -la
-  - sed -i 's/# {{ SED_TOKEN }}/token: ${TF_TOKEN}/g' main.tf
+  - sed -i "s/# {{ SED_TOKEN }}/token: ${TF_TOKEN}/g"  main.tf
 jobs:
   include:
     - stage: terraform plan
