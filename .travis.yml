@@ -3,7 +3,7 @@ dist: xenial # Ubuntu 16.04
 language: bash
 # these are not just env variables
 env:
-  - tf_version=0.12.19 tf_init_cli_options="-input=false" tf_validation_cli_options="" tf_plan_cli_options="-lock=false -input=false" tf_apply_cli_options="-auto-approve -input=false"
+  - tf_version=0.13.5 tf_init_cli_options="-input=false" tf_validation_cli_options="" tf_plan_cli_options="-lock=false -input=false" tf_apply_cli_options="-auto-approve -input=false"
 
 # Only build pushes to master branch
 # branches:
@@ -16,16 +16,7 @@ before_install:
   - unzip terraform_${tf_version}_linux_amd64.zip
   - sudo mv terraform /usr/local/bin/
   - rm terraform_${tf_version}_linux_amd64.zip
-  - | 
-     echo "{
-        "credentials": {
-          "app.terraform.io": {
-            "token": "$TF_TOKEN"
-          }
-        }
-      }
-     " > ~/.terraformrc
-
+  - sed -i 's/# {{ SED_TOKEN }}/token: $TF_TOKEN/g' main.tf
 jobs:
   include:
     - stage: terraform plan

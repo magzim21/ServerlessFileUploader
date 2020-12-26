@@ -9,7 +9,7 @@ variable "aws_secret_access_key" {
 terraform {
   backend "remote" {      
     organization = "maxim-org"
-    # I can use "token" here
+    # {{ SED_TOKEN }}
     
     workspaces {
       prefix = "fileuploader-"
