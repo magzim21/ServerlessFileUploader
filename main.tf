@@ -12,6 +12,7 @@ terraform {
     # {{ SED_TOKEN }}
     
     workspaces {
+      name = "fileuploader-test"
       prefix = "fileuploader-"
     }
   } 
